@@ -25,7 +25,8 @@ graph-repos:
 
 graph-architecture:
 	./scripts/graph-repos.sh | tred > graph-architecture.dot
-	@echo "wrote graph-architecture.dot ($$(gc graph-architecture.dot | awk '{print $$2}') edges after transitive reduction)"
+	dot -Tsvg graph-architecture.dot -o graph-architecture.svg
+	@echo "wrote graph-architecture.{dot,svg} ($$(gc graph-architecture.dot | awk '{print $$2}') edges after transitive reduction)"
 
 deps:
 	@test -n "$(TARGET)" || { echo "usage: make deps TARGET=//repos/purl:purl"; exit 1; }

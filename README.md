@@ -5,6 +5,8 @@ the [`git-pkgs`](https://github.com/git-pkgs) org into a single dependency
 graph. Gazelle generates the targets from the source; the per-repo build stays
 authoritative.
 
+![git-pkgs module architecture](graph-architecture.svg)
+
 ## Prerequisites
 
 `gh` (authenticated), `git`, `jq`, `go` 1.27+, `graphviz`, and `bazelisk` on `$PATH`

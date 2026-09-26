@@ -7,7 +7,7 @@ authoritative.
 
 ## Prerequisites
 
-`gh` (authenticated), `git`, `jq`, `go` 1.27+, and `bazelisk` on `$PATH`
+`gh` (authenticated), `git`, `jq`, `go` 1.27+, `graphviz`, and `bazelisk` on `$PATH`
 (`go install github.com/bazelbuild/bazelisk@latest`, or set `BAZEL=bazel` if
 you already manage Bazel versions another way).
 
@@ -40,7 +40,8 @@ make gazelle         # regenerate from whatever is already in repos/
 
 ```
 make graph                             # package-level DOT of all //repos/... edges
-make graph-repos                       # collapsed to one node per repo
+make graph-repos                       # collapsed to one node per repo (every edge)
+make graph-architecture                # graph-repos with transitive reduction applied
 make deps  TARGET=//repos/brief/...    # git-pkgs packages a target pulls in
 make rdeps TARGET=//repos/purl:purl    # everything in the org that reaches it
 ```

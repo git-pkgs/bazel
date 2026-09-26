@@ -1,7 +1,7 @@
 BAZEL ?= bazelisk
 UNIVERSE = //repos/...
 
-.PHONY: bootstrap sync gazelle graph graph-repos deps rdeps clean
+.PHONY: bootstrap sync gazelle graph graph-repos graph-architecture deps rdeps clean
 
 bootstrap: sync gazelle
 
@@ -23,6 +23,10 @@ graph-repos:
 	./scripts/graph-repos.sh > graph-repos.dot
 	@echo "wrote graph-repos.dot"
 
+graph-architecture:
+	./scripts/graph-repos.sh | tred > graph-architecture.dot
+	@echo "wrote graph-architecture.dot ($$(gc graph-architecture.dot | awk '{print $$2}') edges after transitive reduction)"
+
 deps:
 	@test -n "$(TARGET)" || { echo "usage: make deps TARGET=//repos/purl:purl"; exit 1; }
 	$(BAZEL) query --keep_going \
@@ -35,5 +39,5 @@ rdeps:
 
 clean:
 	find repos -name BUILD.bazel -delete 2>/dev/null || true
-	rm -f go.work go.work.sum graph.dot graph-repos.dot
+	rm -f go.work go.work.sum graph.dot graph-repos.dot graph-architecture.dot
 	$(BAZEL) clean

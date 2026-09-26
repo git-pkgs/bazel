@@ -3,5 +3,4 @@
 /go.work
 /go.work.sum
 /MODULE.bazel.lock
-/graph.dot
-/graph-repos.dot
+/graph*.dot

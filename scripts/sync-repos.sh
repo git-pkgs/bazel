@@ -22,10 +22,10 @@ while IFS=$'\t' read -r name url; do
   dest="repos/$name"
   if [[ -d "$dest/.git" ]]; then
     echo "sync  $name"
-    git -C "$dest" fetch --quiet origin
+    git -C "$dest" fetch --quiet --depth 1 --no-tags origin
     git -C "$dest" reset --quiet --hard "origin/$(git -C "$dest" rev-parse --abbrev-ref origin/HEAD | sed 's|^origin/||')"
   else
     echo "clone $name"
-    git clone --quiet "$url" "$dest"
+    git clone --quiet --depth 1 --filter=blob:none --no-tags "$url" "$dest"
   fi
 done

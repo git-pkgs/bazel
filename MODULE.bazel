@@ -1,0 +1,15 @@
+module(name = "git_pkgs_graph")
+
+bazel_dep(name = "rules_go", version = "0.63.0")
+bazel_dep(name = "gazelle", version = "0.54.0")
+
+go_sdk = use_extension("@rules_go//go:extensions.bzl", "go_sdk")
+go_sdk.download(version = "1.27.1")
+
+go_deps = use_extension("@gazelle//:extensions.bzl", "go_deps")
+go_deps.from_file(go_work = "//:go.work")
+go_deps.gazelle_default_attributes(
+    build_file_generation = "on",
+    directives = ["gazelle:proto disable"],
+)
+use_repo(go_deps, "com_github_aws_aws_sdk_go_v2_config", "com_github_aws_aws_sdk_go_v2_service_ecr", "com_github_bazelbuild_buildtools", "com_github_betterleaks_go_re2", "com_github_bmatcuk_doublestar_v4", "com_github_burntsushi_toml", "com_github_cenk_backoff", "com_github_charlievieth_fastwalk", "com_github_cyclonedx_cyclonedx_go", "com_github_ecosyste_ms_ecosystems_go", "com_github_expr_lang_expr", "com_github_facebookgo_clock", "com_github_fatih_semgroup", "com_github_flier_gohs", "com_github_git_pkgs_gittuf", "com_github_git_pkgs_go_billy_v6", "com_github_git_pkgs_go_git_v6", "com_github_git_pkgs_licensecheck", "com_github_github_go_spdx_v2", "com_github_gitleaks_go_gitdiff", "com_github_gittuf_gittuf", "com_github_gliderlabs_ssh", "com_github_go_chi_chi_v5", "com_github_go_git_go_billy_v5", "com_github_go_git_go_billy_v6", "com_github_go_git_go_git_v5", "com_github_go_git_go_git_v6", "com_github_go_sprout_sprout", "com_github_golangci_golangci_lint_v2", "com_github_google_capslock", "com_github_google_go_cmp", "com_github_google_go_github_v72", "com_github_google_go_github_v82", "com_github_h2non_filetype", "com_github_hashicorp_go_version", "com_github_jmoiron_sqlx", "com_github_klauspost_compress", "com_github_lib_pq", "com_github_masterminds_semver_v3", "com_github_mattn_go_isatty", "com_github_mholt_archives", "com_github_microcosm_cc_bluemonday", "com_github_niklasfasching_go_org", "com_github_oapi_codegen_nullable", "com_github_odvcencio_gotreesitter", "com_github_opencontainers_go_digest", "com_github_ossf_scorecard_v5", "com_github_package_url_packageurl_go", "com_github_pandatix_go_cvss", "com_github_pelletier_go_toml_v2", "com_github_pkoukk_tiktoken_go", "com_github_prometheus_client_golang", "com_github_prometheus_client_model", "com_github_rogpeppe_go_internal", "com_github_rrethy_ahocorasick", "com_github_rs_dnscache", "com_github_rs_zerolog", "com_github_rubyist_circuitbreaker", "com_github_santhosh_tekuri_jsonschema_v6", "com_github_shurcool_githubv4", "com_github_sigstore_protobuf_specs", "com_github_sigstore_rekor", "com_github_sigstore_sigstore_go", "com_github_spdx_tools_golang", "com_github_spf13_cobra", "com_github_spf13_pflag", "com_github_stretchr_testify", "com_github_swaggo_swag", "com_github_ulikunitz_xz", "com_github_yuin_goldmark", "com_gitlab_gitlab_org_api_client_go", "com_google_cloud_go_compute_metadata", "dev_gocloud", "in_gopkg_yaml_v3", "in_yaml_go_yaml_v3", "io_gitea_code_sdk_gitea", "org_golang_google_protobuf", "org_golang_x_crypto", "org_golang_x_exp", "org_golang_x_net", "org_golang_x_oauth2", "org_golang_x_sync", "org_golang_x_term", "org_golang_x_tools", "org_modernc_sqlite")

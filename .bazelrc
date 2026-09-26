@@ -1,0 +1,2 @@
+common --noshow_progress
+query --noimplicit_deps
